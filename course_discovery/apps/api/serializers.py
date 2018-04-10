@@ -667,8 +667,10 @@ class MinimalPublisherCourseRunSerializer(TimestampModelSerializer):
         return obj.title_override or obj.course.title
 
 
-class MinimalCourseRunSerializer(DynamicFieldsMixin, TimestampModelSerializer):
-    image = ImageField(read_only=True, source='image_url')
+#####class MinimalCourseRunSerializer(DynamicFieldsMixin, TimestampModelSerializer):
+#####    image = ImageField(read_only=True, source='image_url')
+class MinimalCourseRunSerializer(TimestampModelSerializer):
+    image = ImageField(read_only=True, source='card_image_url')
     marketing_url = serializers.SerializerMethodField()
     seats = SeatSerializer(required=False, many=True)
     key = serializers.CharField(required=False, read_only=True)
